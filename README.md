@@ -61,6 +61,72 @@ PROUD bridges **education, NFC technology, and blockchain** to create a system w
 
 ---
 
+## 🛠️ Local Development Setup
+
+### Prerequisites
+- [Docker](https://docs.docker.com/get-docker/) and Docker Compose
+- Node.js ≥ 18
+- npm ≥ 9
+
+### 1. Clone and install dependencies
+
+```bash
+git clone https://github.com/Orengo-group/proud-backend.git
+cd proud-backend
+npm install
+```
+
+### 2. Configure environment variables
+
+```bash
+cp .env.example .env
+# Edit .env if needed — defaults work out-of-the-box with the Docker Compose database
+```
+
+### 3. Start the local PostgreSQL database
+
+A `docker-compose.yml` is included to spin up a PostgreSQL 16 container that matches the default `.env.example` credentials:
+
+```bash
+docker compose up -d
+```
+
+This starts a `proud_postgres` container on port **5432** with:
+- User: `postgres`
+- Password: `password`
+- Database: `proud_db`
+
+Data is persisted in a named Docker volume (`postgres_data`) so it survives container restarts.
+
+To stop the database:
+
+```bash
+docker compose down
+```
+
+To stop and wipe all data (fresh start):
+
+```bash
+docker compose down -v
+```
+
+### 4. Run database migrations
+
+```bash
+npm run prisma:migrate:dev
+```
+
+### 5. Start the development server
+
+```bash
+npm run start:dev
+```
+
+The API will be available at `http://localhost:3000`.  
+Interactive Swagger docs are at `http://localhost:3000/api`.
+
+---
+
 ## 🏗️ Architecture
 
 ```text

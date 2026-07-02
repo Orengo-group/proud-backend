@@ -26,17 +26,25 @@ async function bootstrap() {
   // ─── Swagger / OpenAPI ───────────────────────────────────────────────────────
   if (configService.get<string>('nodeEnv') !== 'production') {
     const swaggerConfig = new DocumentBuilder()
-      .setTitle('PROUD API')
+      .setTitle('Proud Backend API')
       .setDescription(
         'Backend API for the PROUD student engagement and incentive platform',
       )
       .setVersion('1.0')
-      .addBearerAuth()
+      .addBearerAuth(
+        {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+          description: 'Enter your JWT access token',
+        },
+        'JWT-auth',
+      )
       .build();
 
     const document = SwaggerModule.createDocument(app, swaggerConfig);
-    SwaggerModule.setup('api', app, document);
-    logger.log('Swagger UI available at /api');
+    SwaggerModule.setup('docs', app, document);
+    logger.log('Swagger UI available at /docs');
   }
 
   // ─── Start server ────────────────────────────────────────────────────────────
@@ -44,6 +52,7 @@ async function bootstrap() {
   await app.listen(port);
   logger.log(`Application running on http://localhost:${port}`);
   logger.log(`Health check: http://localhost:${port}/health`);
+  logger.log(`Swagger docs: http://localhost:${port}/docs`);
 }
 
 bootstrap();

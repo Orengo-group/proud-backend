@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { configuration, validationSchema } from './config';
 import { DatabaseModule } from './database/database.module';
+import { HealthModule } from './health/health.module';
 
 @Module({
   imports: [
@@ -20,6 +21,9 @@ import { DatabaseModule } from './database/database.module';
 
     // Global database module — exports PrismaService to all feature modules
     DatabaseModule,
+
+    // Feature modules
+    HealthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

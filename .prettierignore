@@ -1,0 +1,20 @@
+# Build output
+dist/
+build/
+
+# Node modules
+node_modules/
+
+# Prisma generated client
+src/generated/
+prisma/migrations/
+
+# Coverage reports
+coverage/
+
+# Environment files
+.env
+.env.*
+
+# Logs
+*.log

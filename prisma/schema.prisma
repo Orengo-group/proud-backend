@@ -13,18 +13,23 @@ datasource db {
 // ─── User / Auth ─────────────────────────────────────────────────────────────
 
 enum Role {
-  ADMIN
   STUDENT
+  SCHOOL_ADMIN
+  TEACHER
   SPONSOR
+  SUPER_ADMIN
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  password  String
-  role      Role     @default(STUDENT)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  firstName    String
+  lastName     String
+  role         Role     @default(STUDENT)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   student Student?
 

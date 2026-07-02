@@ -123,7 +123,7 @@ npm run start:dev
 ```
 
 The API will be available at `http://localhost:3000`.  
-Interactive Swagger docs are at `http://localhost:3000/api`.
+Interactive Swagger docs are at `http://localhost:3000/docs`.
 
 ---
 

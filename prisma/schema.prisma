@@ -31,7 +31,7 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  student       Student?
+  student         Student?
   assignedNfcTags NfcTag[] @relation("NfcTagAssignedBy")
 
   @@map("users")
@@ -62,16 +62,16 @@ model Student {
 // ─── NFC ─────────────────────────────────────────────────────────────────────
 
 model NfcTag {
-  id               String   @id @default(uuid())
-  uid              String   @unique
-  studentId        String
-  assignedById     String?
-  isActive         Boolean  @default(true)
-  assignedAt       DateTime @default(now())
-  createdAt        DateTime @default(now())
+  id           String   @id @default(uuid())
+  uid          String   @unique
+  studentId    String
+  assignedById String?
+  isActive     Boolean  @default(true)
+  assignedAt   DateTime @default(now())
+  createdAt    DateTime @default(now())
 
-  student    Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  assignedBy User?    @relation("NfcTagAssignedBy", fields: [assignedById], references: [id], onDelete: SetNull)
+  student    Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  assignedBy User?   @relation("NfcTagAssignedBy", fields: [assignedById], references: [id], onDelete: SetNull)
 
   @@map("nfc_tags")
 }

@@ -6,6 +6,7 @@ import { configuration, validationSchema } from './config';
 import { DatabaseModule } from './database/database.module';
 import { HealthModule } from './health/health.module';
 import { AuthModule } from './auth/auth.module';
+import { StudentsModule } from './students/students.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { AuthModule } from './auth/auth.module';
     // Feature modules
     HealthModule,
     AuthModule,
+    StudentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

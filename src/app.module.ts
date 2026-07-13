@@ -7,6 +7,7 @@ import { DatabaseModule } from './database/database.module';
 import { HealthModule } from './health/health.module';
 import { AuthModule } from './auth/auth.module';
 import { StudentsModule } from './students/students.module';
+import { NfcModule } from './nfc/nfc.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { StudentsModule } from './students/students.module';
     HealthModule,
     AuthModule,
     StudentsModule,
+    NfcModule,
   ],
   controllers: [AppController],
   providers: [AppService],
